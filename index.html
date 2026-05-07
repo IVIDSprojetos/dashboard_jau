@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Jaú — Dashboard de Insights</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+        
+        :root {
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: #f8fafc;
+            color: #000000;
+        }
+
+        .glass-card {
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .kpi-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 0.75rem;
+        }
+
+        /* Garantir contraste no modo escuro se o sistema alterar */
+        @media (prefers-color-scheme: dark) {
+            body { background-color: #0f172a; color: #ffffff; }
+            .glass-card { background: #1e293b; border-color: #334155; }
+            .text-black { color: #ffffff !important; }
+            .text-slate-600 { color: #cbd5e1 !important; }
+            .text-slate-800 { color: #94a3b8 !important; }
+        }
+    </style>
+</head>
+<body class="antialiased p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Cabeçalho -->
+        <header class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+                <h1 class="text-2xl font-black tracking-tight flex items-center gap-2 text-black">
+                    <span class="p-2 bg-indigo-600 text-white rounded-lg"><i class="ti ti-brand-instagram"></i></span>
+                    Urban Jaú <span class="font-light text-slate-600">| Intelligence</span>
+                </h1>
+                <p class="text-black mt-1 font-semibold">Análise detalhada de 13.769 contatos mapeados de empreendimentos imobiliários do Instagram</p>
+            </div>
+            <div class="flex gap-2">
+                <div class="px-4 py-2 glass-card flex items-center gap-2 text-sm font-bold text-black">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    Base de Dados Atualizada
+                </div>
+            </div>
+        </header>
+
+        <!-- Grelha de KPIs -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+            <div class="glass-card p-4 border-l-4 border-l-blue-500">
+                <div class="kpi-icon bg-blue-100 text-blue-600 mb-3"><i class="ti ti-users"></i></div>
+                <p class="text-[10px] font-black text-black uppercase tracking-widest">contatos</p>
+                <h3 class="text-2xl font-black text-black">13.769</h3>
+                <p class="text-[10px] text-slate-800 mt-1 font-bold">Perfis Identificados</p>
+            </div>
+            <div class="glass-card p-4 border-l-4 border-l-emerald-500">
+                <div class="kpi-icon bg-emerald-100 text-emerald-600 mb-3"><i class="ti ti-brand-whatsapp"></i></div>
+                <p class="text-[10px] font-black text-black uppercase tracking-widest">Total de telefones</p>
+                <h3 class="text-2xl font-black text-black">2.403</h3>
+                <p class="text-[10px] text-emerald-700 mt-1 font-black">17,5% da Base</p>
+            </div>
+            <div class="glass-card p-4 border-l-4 border-l-indigo-500">
+                <div class="kpi-icon bg-indigo-100 text-indigo-600 mb-3"><i class="ti ti-mail"></i></div>
+                <p class="text-[10px] font-black text-black uppercase tracking-widest">E-mail</p>
+                <h3 class="text-2xl font-black text-black">540</h3>
+                <p class="text-[10px] text-slate-800 mt-1 font-bold">3,9% da Base</p>
+            </div>
+            <div class="glass-card p-4 border-l-4 border-l-sky-500">
+                <div class="kpi-icon bg-sky-100 text-sky-600 mb-3"><i class="ti ti-discount-check"></i></div>
+                <p class="text-[10px] font-black text-black uppercase tracking-widest">Perfis Verificados (Selo Azul)</p>
+                <h3 class="text-2xl font-black text-black">1.096</h3>
+                <p class="text-[10px] text-slate-800 mt-1 font-bold">8,0% Verificados</p>
+            </div>
+            <div class="glass-card p-4 border-l-4 border-l-amber-500">
+                <div class="kpi-icon bg-amber-100 text-amber-600 mb-3"><i class="ti ti-briefcase"></i></div>
+                <p class="text-[10px] font-black text-black uppercase tracking-widest">Business</p>
+                <h3 class="text-2xl font-black text-black">2.644</h3>
+                <p class="text-[10px] text-slate-800 mt-1 font-bold">19,2% Comerciais</p>
+            </div>
+            <div class="glass-card p-4 border-l-4 border-l-rose-500">
+                <div class="kpi-icon bg-rose-100 text-rose-600 mb-3"><i class="ti ti-link"></i></div>
+                <p class="text-[10px] font-black text-black uppercase tracking-widest">Site/Bio</p>
+                <h3 class="text-2xl font-black text-black">4.677</h3>
+                <p class="text-[10px] text-slate-800 mt-1 font-bold">34,0% com Link</p>
+            </div>
+        </div>
+
+        <!-- Secção de Gráficos Principais -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <div class="glass-card p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="font-black text-lg text-black">Distribuição de Seguidores</h3>
+                    <i class="ti ti-chart-pie text-black"></i>
+                </div>
+                <div class="h-72 relative">
+                    <canvas id="segChart"></canvas>
+                </div>
+            </div>
+
+            <div class="glass-card p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="font-black text-lg text-black">Canais de Contacto</h3>
+                    <i class="ti ti-message-2 text-black"></i>
+                </div>
+                <div class="h-72 relative">
+                    <canvas id="contChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categorias -->
+        <div class="grid grid-cols-1 gap-8 mb-8">
+            <div class="glass-card p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="font-black text-lg text-black">Principais Categorias de Negócio</h3>
+                    <span class="text-xs font-black text-indigo-800 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200">Top 10 Segmentos</span>
+                </div>
+                <div class="h-[450px]">
+                    <canvas id="catChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Perfil e Cidades -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div class="glass-card p-6">
+                <h3 class="font-black text-lg mb-6 text-black">Visibilidade da Conta</h3>
+                <div class="h-64">
+                    <canvas id="privChart"></canvas>
+                </div>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="font-black text-lg mb-6 text-black">Concentração Geográfica (Endereço Business)</h3>
+                <div class="h-64">
+                    <canvas id="cidChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banner de Qualidade -->
+        <div class="glass-card p-6 bg-black text-white overflow-hidden relative border-none">
+            <div class="relative z-10">
+                <h3 class="font-bold text-xl mb-6 flex items-center gap-2">
+                    <i class="ti ti-shield-check text-emerald-400"></i>
+                    Qualidade da Base WhatsApp Verificada
+                </h3>
+                <div class="flex flex-wrap gap-4">
+                    <div class="bg-white/10 backdrop-blur-md px-6 py-4 rounded-xl border border-white/20">
+                        <span class="block text-[10px] uppercase text-slate-300 font-black tracking-widest mb-1">WhatsApp Ativo</span>
+                        <span class="text-3xl font-black">2.183</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md px-6 py-4 rounded-xl border border-white/20">
+                        <span class="block text-[10px] uppercase text-slate-300 font-black tracking-widest mb-1">Fixo Verificado</span>
+                        <span class="text-3xl font-black">154</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md px-6 py-4 rounded-xl border border-white/20">
+                        <span class="block text-[10px] uppercase text-slate-300 font-black tracking-widest mb-1">Não Identificado</span>
+                        <span class="text-3xl font-black">63</span>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-md px-6 py-4 rounded-xl border border-white/10 flex items-center">
+                        <span class="text-sm text-slate-400 font-medium">11.366 Perfis sem número público</span>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute -right-20 -top-20 w-80 h-80 bg-indigo-600/20 rounded-full blur-[100px]"></div>
+        </div>
+    </div>
+
+    <script>
+        const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const textColor = isDark ? '#ffffff' : '#000000';
+        const borderColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+
+        // Configuração Global do Chart.js
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.font.weight = '700';
+        Chart.defaults.color = textColor;
+        Chart.defaults.plugins.tooltip.backgroundColor = '#000000';
+        Chart.defaults.plugins.tooltip.titleColor = '#ffffff';
+        Chart.defaults.plugins.tooltip.bodyColor = '#ffffff';
+        Chart.defaults.plugins.tooltip.padding = 12;
+        Chart.defaults.plugins.tooltip.cornerRadius = 8;
+
+        const palette = ['#4f46e5', '#10b981', '#7c3aed', '#f59e0b', '#e11d48', '#0ea5e9', '#64748b'];
+
+        // Gráfico: Seguidores
+        new Chart(document.getElementById('segChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['1K–5K','500–1K','100–500','10K–50K','50K+','5K–10K','<100'],
+                datasets: [{
+                    data: [5326, 2809, 2576, 1202, 542, 917, 381],
+                    backgroundColor: palette,
+                    borderWidth: 3,
+                    borderColor: isDark ? '#1e293b' : '#ffffff',
+                    hoverOffset: 15
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: { 
+                        position: 'bottom',
+                        labels: { boxWidth: 10, padding: 15, font: { size: 11, weight: '900' }, color: textColor }
+                    }
+                }
+            }
+        });
+
+        // Gráfico: contatos
+        new Chart(document.getElementById('contChart'), {
+            type: 'polarArea',
+            data: {
+                labels: ['WhatsApp','E-mail','Apenas URL','Sem contacto'],
+                datasets: [{
+                    data: [2403, 540, 4677, 6149],
+                    backgroundColor: ['#10b981', '#4f46e5', '#f43f5e', '#00000033'],
+                    borderWidth: 2,
+                    borderColor: textColor
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: { 
+                        grid: { color: borderColor }, 
+                        ticks: { display: false },
+                        angleLines: { color: borderColor }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 10, font: { weight: '900' }, color: textColor } }
+                }
+            }
+        });
+
+        // Gráfico: Categorias
+        new Chart(document.getElementById('catChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Entrepreneur','Digital creator','Product/service','Personal blog','Architectural Designer','Artist','Public figure','Health/beauty','Photographer','Shopping & retail'],
+                datasets: [{
+                    label: 'Número de Perfis',
+                    data: [489, 413, 307, 180, 159, 144, 60, 60, 45, 44],
+                    backgroundColor: '#4f46e5',
+                    borderRadius: 5,
+                    barThickness: 28,
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { 
+                        grid: { color: borderColor },
+                        ticks: { color: textColor, font: { size: 11, weight: '900' } }
+                    },
+                    y: { 
+                        grid: { display: false },
+                        ticks: { color: textColor, font: { weight: '800' } }
+                    }
+                }
+            }
+        });
+
+        // Gráfico: Visibilidade
+        new Chart(document.getElementById('privChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Pública','Privada'],
+                datasets: [{
+                    data: [7676, 6093],
+                    backgroundColor: ['#4f46e5', '#000000'],
+                    borderWidth: 2,
+                    borderColor: isDark ? '#1e293b' : '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right', labels: { font: { weight: '900' }, color: textColor } }
+                }
+            }
+        });
+
+        // Gráfico: Cidades
+        new Chart(document.getElementById('cidChart'), {
+            type: 'bar',
+            data: {
+                labels: ['São Paulo','Jaú','Sorocaba','Campinas','Itu','P. Feliz','RJ','Curitiba'],
+                datasets: [{
+                    data: [242, 69, 44, 37, 19, 15, 15, 10],
+                    backgroundColor: '#ea580c',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: borderColor }, ticks: { color: textColor, font: { weight: '900' } } },
+                    x: { grid: { display: false }, ticks: { color: textColor, font: { weight: '900' } } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
